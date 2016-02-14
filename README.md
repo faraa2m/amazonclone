@@ -2,7 +2,10 @@ This is a clone of amazon.com which uses nodejs as backend server, mongolab as d
 ejs for displaying views and stripe payment .
 
 Dependencies Required:
-1) install nodemon  globally: 
+ install nodemon  globally: 
 	npm install nodemon -g --save
-2) install express
-	npm install express --save
+
+	install other dependecies using npm init
+
+	1) Express
+	2
