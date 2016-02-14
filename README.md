@@ -12,3 +12,4 @@ Dependencies Required:
 	3) Mongoose -- to connect to and use mongodb (mongolab in this case)
 	4) bcrypt-nodejs -- Native JS implementation of BCrypt for Node.
 	5) body-parser -- to get info from post route
+	6) ejs, ejs-mate -- to display views dynamically

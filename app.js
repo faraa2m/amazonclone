@@ -2,6 +2,8 @@ var express 	= require('express');
 var morgan 		= require('morgan');
 var mongoose 	= require('mongoose');
 var bodyParser	= require('body-parser');
+var ejs 		= require('ejs');
+var ejsMate		= require('ejs-mate');
 
 var User 		= require('./models/user')
 
@@ -17,15 +19,24 @@ mongoose.connect('mongodb://root:asdf1234@ds049150.mongolab.com:49150/amazonclon
 
 //Middlewares
 app.use(morgan('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true}));
 
 //Routes
 app.get("/",function(req,res){
 	res.send("HomePage");
 });
 
-app.post("/create-user",function(req,res){
+app.post("/create-user",function(req,res,next){
 	var user = new User();
-	user.profile.name = 
+	user.profile.name = req.body.name;
+	user.password = req.body.password;
+	user.email = req.body.email;
+
+	user.save(function(err){
+		if(err) return next(err);
+		res.send("created new user");
+	})
 });
 
 //Listener
