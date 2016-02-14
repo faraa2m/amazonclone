@@ -42,4 +42,4 @@ UserSchema.methods.comparePassword = function(password){
 	return bycrypt.compareSync(password,this.password);
 };
 
-module.export = 
+module.exports = mongoose.model('User',UserSchema); 
