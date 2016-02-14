@@ -21,10 +21,12 @@ mongoose.connect('mongodb://root:asdf1234@ds049150.mongolab.com:49150/amazonclon
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
+app.engine('ejs', ejsMate);
+app.set('view engine','ejs');
 
 //Routes
 app.get("/",function(req,res){
-	res.send("HomePage");
+	res.render("home");
 });
 
 app.post("/create-user",function(req,res,next){
