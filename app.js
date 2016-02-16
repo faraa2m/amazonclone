@@ -3,7 +3,7 @@ var morgan 		= require('morgan');
 var mongoose 	= require('mongoose');
 var bodyParser	= require('body-parser');
 var ejs 		= require('ejs');
-var ejsMate		= require('ejs-mate');
+var engine		= require('ejs-mate');
 
 var User 		= require('./models/user')
 
@@ -21,12 +21,17 @@ mongoose.connect('mongodb://root:asdf1234@ds049150.mongolab.com:49150/amazonclon
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
-app.engine('ejs', ejsMate);
+app.set('views',__dirname + '/views');
+app.engine('ejs', engine);
 app.set('view engine','ejs');
 
 //Routes
 app.get("/",function(req,res){
-	res.render("home");
+	res.render("main/home");
+});
+
+app.get("/about",function(req,res){
+	res.render("main/about");
 });
 
 app.post("/create-user",function(req,res,next){
