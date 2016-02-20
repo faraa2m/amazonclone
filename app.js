@@ -7,7 +7,7 @@ var engine				= require('ejs-mate');
 var session 			= require('express-session');
 var cookieParser 	= require('cookie-parser');
 var flash					= require('express-flash');
-var MongoStore		= require('connect-mongo')(session);
+var MongoStore		= require('connect-mongo/es5')(session);
 var passport			= require('passport');
 
 var secret 	= require('./config/secret')
@@ -39,6 +39,8 @@ app.use(flash());
 app.set('views',__dirname + '/views');
 app.engine('ejs', engine);
 app.set('view engine','ejs');
+app.use(passport.initialize());
+app.use(passport.session());
 
 //Routes
 

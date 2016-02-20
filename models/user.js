@@ -39,7 +39,7 @@ UserSchema.pre('save',function(next){
 
 //Compare the password in database with the user input
 UserSchema.methods.comparePassword = function(password){
-	return bycrypt.compareSync(password,this.password);
+	return bcrypt.compareSync(password,this.password);
 };
 
-module.exports = mongoose.model('User',UserSchema); 
+module.exports = mongoose.model('User',UserSchema);

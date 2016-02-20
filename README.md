@@ -16,3 +16,4 @@ Dependencies Required:
   7) express-flash -- to display success/error messages
   8) express-session, cookie-parser -- to use session variable
   9) connect-mongo -- to connect to session store
+  10) passport -- for authentication
