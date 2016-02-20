@@ -1,7 +1,16 @@
 <% layout('layout') -%>
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <form class="" action="index.h" method="post">
+
+    <% if (errors.length > 0){ %>
+      <div class="alert alert-danger alert-dismissable">
+        <button type="button" class = "close" data-dismiss= "alert" aria-label="Close" name="button">
+          <span aria-hidden = "true">&times;</span>
+        </button>
+        <%=errors%>
+      </div>
+    <% } %>
+    <form class="" action="/signup" method="post">
       <h1>Signup</h1>
       <div class="form-group">
         <label for="name">Name:</label>
@@ -15,6 +24,8 @@
         <label for="Password">Password:</label>
         <input type="password" class = "form-control" name="password">
       </div>
+
+      <button type="submit" class = "btn btn-success" name="button">Submit</button>
     </form>
   </div>
 </div>

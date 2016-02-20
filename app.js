@@ -1,15 +1,19 @@
-var express 	= require('express');
-var morgan 		= require('morgan');
-var mongoose 	= require('mongoose');
-var bodyParser	= require('body-parser');
-var ejs 		= require('ejs');
-var engine		= require('ejs-mate');
+var express 			= require('express');
+var morgan 				= require('morgan');
+var mongoose 			= require('mongoose');
+var bodyParser		= require('body-parser');
+var ejs 					= require('ejs');
+var engine				= require('ejs-mate');
+var session 			= require('express-session');
+var cookieParser 	= require('cookie-parser');
+var flash					= require('express-flash');
 
+var secret 	= require('./config/secret')
 var User 		= require('./models/user');
 
 var app 		= express();
 
-mongoose.connect('mongodb://root:asdf1234@ds049150.mongolab.com:49150/amazonclone',function(err){
+mongoose.connect(secret.database,function(err){
 	if(err){
 		console.log(err);
 	} else {
@@ -22,6 +26,13 @@ app.use(express.static(__dirname + '/public'));
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
+app.use(cookieParser());
+app.use(session({
+	resave:true,
+	saveUninitialized: true,
+	secret: secret.secretKey
+}));
+app.use(flash());
 app.set('views',__dirname + '/views');
 app.engine('ejs', engine);
 app.set('view engine','ejs');
@@ -36,8 +47,8 @@ app.use(userRoutes);
 
 
 //Listener
-app.listen(3000,function(err){
+app.listen(secret.port,function(err){
 	if (err)
 		throw err;
-	console.log("Server started at port 3000");
+	console.log("Server started at port " + secret.port);
 })
