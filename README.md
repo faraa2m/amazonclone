@@ -15,3 +15,4 @@ Dependencies Required:
 	6) ejs, ejs-mate -- to display views dynamically
   7) express-flash -- to display success/error messages
   8) express-session, cookie-parser -- to use session variable
+  9) connect-mongo -- to connect to session store
